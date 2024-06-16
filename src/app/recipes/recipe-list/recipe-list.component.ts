@@ -1,6 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { Recipe } from '../recipe.model';
 import { RecipeService } from '../recipe.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-recipe-list',
@@ -15,7 +16,7 @@ export class RecipeListComponent implements OnInit {
   //   new Recipe("Yakisoba", "Japanese style fried noodles, chicken, and vegetables.", "https://plus.unsplash.com/premium_photo-1664475934279-2631a25c42ce?q=80&w=1480&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
   // ];
 
-  constructor(private recipeService: RecipeService) {
+  constructor(private recipeService: RecipeService, private router: Router, private route: ActivatedRoute) {
 
   }
 
@@ -23,7 +24,7 @@ export class RecipeListComponent implements OnInit {
     this.recipes = this.recipeService.getRecipes();
   }
 
-  // onRecipeSelected(recipe: Recipe){
-  //   this.recipeWasSelected.emit(recipe);
-  // }
+  onNewRecipe() {
+    this.router.navigate(['new'], {relativeTo: this.route})
+  }
 }
